@@ -1,5 +1,4 @@
 local server = false
-local menuOpen = false
 
 RegisterNUICallback("dataPost", function(data, cb)
     SetNuiFocus(false)
@@ -9,7 +8,6 @@ RegisterNUICallback("dataPost", function(data, cb)
 	else
         TriggerEvent(data.event, data.args)
     end
-	menuOpen = false
     cb('ok')
 end)
 
@@ -21,14 +19,9 @@ end)
 RegisterNetEvent('nh-context:sendMenu', function(data, toServer)
     if not data then return end
     if toServer then server = true end
-	if not menuOpen then
-		menuOpen = true
-		SetNuiFocus(true, true)
-		SendNUIMessage({
-			action = "OPEN_MENU",
-			data = data
-		})
-	else
-		print('A menu of this type is already open.')
-    end
+	SetNuiFocus(true, true)
+	SendNUIMessage({
+		action = "OPEN_MENU",
+		data = data
+	})
 end)
