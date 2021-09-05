@@ -21,6 +21,12 @@ in your server.cfg.
 
 https://streamable.com/w04k9z
 
+Syntax
+```
+TriggerEvent('nh-context:sendMenu', data, true) <-- To trigger Server Event
+TriggerEvent('nh-context:sendMenu', data, false) < -- To trigger Client Event
+```
+
 Here is a base menu to show how it works, this is a kinda "figure it out" type of situation but I hope my examples work, the code below is what made the video above!
 ```
 RegisterCommand("test", function(source, args, raw)
@@ -46,7 +52,7 @@ RegisterNetEvent('nh-context:testMenu', function()
                 }
             }
         },
-    })
+    }, false)
 end)
 
 RegisterNetEvent('nh-context:testMenu2', function(data)
@@ -66,7 +72,7 @@ RegisterNetEvent('nh-context:testMenu2', function(data)
             header = "Number: "..number,
             txt = "ID: "..id
         },
-    })
+    }, true)
 end)
 ```
 
